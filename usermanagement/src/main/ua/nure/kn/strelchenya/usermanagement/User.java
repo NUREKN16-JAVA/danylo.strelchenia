@@ -53,16 +53,13 @@ public class User implements Serializable{
     public int getAge() {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(getDateOfBirth());
-        System.out.println(calendar.getTime());
 
         Calendar calendarNow = Calendar.getInstance();
-        System.out.println(calendarNow.getTime());
-
-        int rangeYear = calendarNow.get(Calendar.YEAR) - calendar.get(Calendar.YEAR);
-        int rangeDayYear = calendarNow.get(Calendar.DAY_OF_YEAR) - calendar.get(Calendar.DAY_OF_YEAR);
 
         if (calendarNow.before(calendar)) { throw new IllegalArgumentException("Указана дата в будущем"); }
         else {
+            int rangeYear = calendarNow.get(Calendar.YEAR) - calendar.get(Calendar.YEAR);
+            int rangeDayYear = calendarNow.get(Calendar.DAY_OF_YEAR) - calendar.get(Calendar.DAY_OF_YEAR);
             if (rangeYear > 0) {
                 if (rangeDayYear >= 0) { return rangeYear; }
                 else {return rangeYear - 1;}
