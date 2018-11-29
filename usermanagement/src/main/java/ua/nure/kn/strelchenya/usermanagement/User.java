@@ -1,15 +1,29 @@
 package ua.nure.kn.strelchenya.usermanagement;
 
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-public class User implements Serializable{
-    private static final long serialVersionUID = -2667741113782604986L;
+public class User implements Serializable {
+
+    private static final long serialVersionUID = 8331052594370558575L;
+
     private Long id;
     private String firstName;
     private String lastName;
     private Date dateOfBirth;
+
+    public User() {
+    }
+
+    public User(Long id, String firstName, String lastName, Date dateOfBirth) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.dateOfBirth = dateOfBirth;
+    }
 
     public Long getId() {
         return id;
@@ -39,11 +53,11 @@ public class User implements Serializable{
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(Date dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
+    public void setDateOfBirth(Date dateOfBir) {
+        this.dateOfBirth = dateOfBir;
     }
 
-    public String getFullName () {
+    public String getFullName() {
         return new StringBuilder(getLastName())
                 .append(", ")
                 .append(getFirstName())
@@ -56,7 +70,7 @@ public class User implements Serializable{
 
         Calendar calendarNow = Calendar.getInstance();
 
-        if (calendarNow.before(calendar)) { throw new IllegalArgumentException("–£–∫–∞–∑–∞–Ω–∞ –¥–∞—Ç–∞ –≤ –±—É–¥—É—â–µ–º"); }
+        if (calendarNow.before(calendar)) { throw new IllegalArgumentException("”Í‡Á‡Ì‡ ‰‡Ú‡ ‚ ·Û‰Û˘ÂÏ"); }
         else {
             int rangeYear = calendarNow.get(Calendar.YEAR) - calendar.get(Calendar.YEAR);
             int rangeDayYear = calendarNow.get(Calendar.DAY_OF_YEAR) - calendar.get(Calendar.DAY_OF_YEAR);

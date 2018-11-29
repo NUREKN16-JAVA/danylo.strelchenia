@@ -8,41 +8,41 @@ import java.util.Calendar;
 
 import static org.junit.Assert.assertEquals;
 
-/**РўРµСЃС‚С‹ СЂР°Р±РѕС‚Р°СЋС‚ РЅР° РґР°С‚Сѓ 22.11.2018*/
+/**Тесты работают на дату 22.11.2018*/
 
 public class UserTest {
     User user;
+
     private static final String FIRST_NAME_ETALONE = "Ivan";
     private static final String LAST_NAME_ETALONE = "Ivanov";
     private static final String FULL_NAME_ETALONE = "Ivanov, Ivan";
 
-    private static final int CURRENT_YEAR = 2018;
 
-    /*С‚РµСЃС‚ Р”Р  1*/
+    /*тест ДР 1*/
     private static final int ETALONE_AGE_1 = 47;
     private static final int YEAR_OF_BIRTH_1 = 1971;
     private static final int MONTH_OF_BIRTH_1 = 10;
     private static final int DAY_OF_BIRTH_1 = 22;
 
-    /*С‚РµСЃС‚ Р”Р  С‚РѕС‚ Р¶Рµ РіРѕРґ, С‡РµР»РѕРІРµРєСѓ РЅРµСЃРєРѕР»СЊРєРѕ РґРЅРµР№ РѕС‚ СЂРѕР¶РґРµРЅРёСЏ*/
+    /*тест ДР тот же год, человеку несколько дней от рождения*/
     private static final int ETALONE_AGE_2 = 0;
     private static final int YEAR_OF_BIRTH_2 = 2018;
     private static final int MONTH_OF_BIRTH_2 = 10;
     private static final int DAY_OF_BIRTH_2 = 22;
 
-    /*С‚РµСЃС‚ Р”Р  3 СЂРѕРІРЅРѕ РіРѕРґ*/
+    /*тест ДР 3 ровно год*/
     private static final int ETALONE_AGE_3 = 47;
     private static final int YEAR_OF_BIRTH_3 = 1971;
     private static final int MONTH_OF_BIRTH_3 = 10;
     private static final int DAY_OF_BIRTH_3 = 22;
 
-    /*С‚РµСЃС‚ Р”Р  4 Р·Р° РґРµРЅСЊ РґРѕ РґРЅСЏ СЂРѕР¶РґРµРЅРёСЏ*/
+    /*тест ДР 4 за день до дня рождения*/
     private static final int ETALONE_AGE_4 = 46;
     private static final int YEAR_OF_BIRTH_4 = 1971;
     private static final int MONTH_OF_BIRTH_4 = 10;
     private static final int DAY_OF_BIRTH_4 = 21;
 
-    /*С‚РµСЃС‚ Р”Р  5 Р±СѓРґСѓС‰Р°СЏ РґР°С‚Р°*/
+    /*тест ДР 5 будущая дата*/
     private static final int ETALONE_AGE_5 = 0;
     private static final int YEAR_OF_BIRTH_5 = 2019;
     private static final int MONTH_OF_BIRTH_5 = 10;
