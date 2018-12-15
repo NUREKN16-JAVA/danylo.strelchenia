@@ -8,7 +8,7 @@ import org.dbunit.dataset.xml.XmlDataSet;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import ua.nure.kn.strelchenya.usermanagement.User;
+import ua.nure.kn.yavorovenko.usermanagement.User;
 
 import java.text.SimpleDateFormat;
 import java.util.Collection;
@@ -43,8 +43,8 @@ public class HsqldbUserDaoTest extends DatabaseTestCase {
     public void testCreate() throws Exception {
         User user  = new User(
                 null,
-                "Danil",
-                "Strelchenya",
+                "Jack",
+                "Nickolsan",
                 new SimpleDateFormat("dd/MM/yyyy").parse("11/02/1992")
         );
         assertNull(user.getId());
@@ -94,22 +94,22 @@ public class HsqldbUserDaoTest extends DatabaseTestCase {
     public void testUpdate() throws Exception {
         User user  = new User(
                 null,
-                "Andrew",
-                "Nikolskiy",
+                "Bob",
+                "Lolybomb",
                 new SimpleDateFormat("dd/MM/yyyy").parse("27/10/1983")
         );
         try {
             user = daoFactory.getUserDao().create(user);
 
-            user.setFirstName("Danil");
-            user.setLastName("Strelchenya");
+            user.setFirstName("Nick");
+            user.setLastName("Jonson");
 
             daoFactory.getUserDao().update(user);
 
             User updatedUser = daoFactory.getUserDao().find(user.getId());
 
-            assertEquals("The first name must be <Danil>", "Danil", updatedUser.getFirstName());
-            assertEquals("The first name must be <Strelchenya>", "Strelchenya", updatedUser.getLastName());
+            assertEquals("The first name must be <Nick>", "Nick", updatedUser.getFirstName());
+            assertEquals("The first name must be <Jonson>", "Jonson", updatedUser.getLastName());
         } catch (DatabaseException e) {
             e.printStackTrace();
             fail(e.toString());

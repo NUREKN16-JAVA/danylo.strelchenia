@@ -1,10 +1,12 @@
 package ua.nure.kn.strelchenya.usermanagement;
 
+import javax.jws.soap.SOAPBinding;
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Objects;
 
 public class User implements Serializable {
 
@@ -20,6 +22,12 @@ public class User implements Serializable {
 
     public User(Long id, String firstName, String lastName, Date dateOfBirth) {
         this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public User(String firstName, String lastName, Date dateOfBirth) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
@@ -64,20 +72,50 @@ public class User implements Serializable {
                 .toString();
     }
 
-    public int getAge() {
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(getDateOfBirth());
+    @Override
+    public String toString() {
+        return getFullName();
+    }
 
-        Calendar calendarNow = Calendar.getInstance();
-
-        if (calendarNow.before(calendar)) { throw new IllegalArgumentException("”казана дата в будущем"); }
-        else {
-            int rangeYear = calendarNow.get(Calendar.YEAR) - calendar.get(Calendar.YEAR);
-            int rangeDayYear = calendarNow.get(Calendar.DAY_OF_YEAR) - calendar.get(Calendar.DAY_OF_YEAR);
-            if (rangeYear > 0) {
-                if (rangeDayYear >= 0) { return rangeYear; }
-                else {return rangeYear - 1;}
-            } else {return 0;}
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
         }
+
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+
+        if (this.getId() == null && ((User) obj).getId() == null) {
+            return true;
+        }
+        return this.getId().equals(((User) obj).getId());
+    }
+
+    @Override
+    public int hashCode() {
+        if (this.getId() == null) {
+            return 0;
+        }
+        return Objects.hash(this.getId());
+    }
+
+    public int getAge() {
+        Calendar dateOfBirthday = Calendar.getInstance();
+        dateOfBirthday.setTime(getDateOfBirth());
+
+        Calendar today = Calendar.getInstance();
+
+        if (dateOfBirthday.after(today)) {
+            throw new IllegalArgumentException("The age can not be negative!");
+        }
+
+        DateFormat formatter = new SimpleDateFormat("yyyyMMdd");
+        int d1 = Integer.parseInt(formatter.format(getDateOfBirth()));
+        int d2 = Integer.parseInt(formatter.format(today.getTime()));
+        int ageCounter = (d2 - d1) / 10000;
+
+        return ageCounter;
     }
 }
